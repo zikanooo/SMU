@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#0d0b0c" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Auralys" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <script>try{var b=localStorage.getItem('auralys_theme_bg');if(b){document.documentElement.style.backgroundColor=b;document.querySelector('meta[name="theme-color"]').setAttribute('content',b)}}catch(e){}</script>
+    <title>Auralys</title>
+    <meta name="description" content="Fluid liquid glass music player inspired by iOS 26 with refraction physics, YouTube Music backend, ambient dynamic mesh, and synchronized lyrics." />
+    <meta property="og:title" content="Liquid Glass Music Player (iOS 26)" />
+    <meta property="og:description" content="Fluid liquid glass music player inspired by iOS 26 with refraction physics, YouTube Music backend, ambient dynamic mesh, and synchronized lyrics." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

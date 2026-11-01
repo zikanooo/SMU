@@ -1,0 +1,20 @@
+{
+  "packageId": "com.auralys.music",
+  "host": "GANTI-DENGAN-DOMAINMU.vercel.app",
+  "name": "Auralys",
+  "launcherName": "Auralys",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#0d0b0c",
+  "navigationColor": "#0d0b0c",
+  "backgroundColor": "#0d0b0c",
+  "startUrl": "/?source=twa",
+  "iconUrl": "https://GANTI-DENGAN-DOMAINMU.vercel.app/icons/icon-512.png",
+  "maskableIconUrl": "https://GANTI-DENGAN-DOMAINMU.vercel.app/icons/maskable-512.png",
+  "webManifestUrl": "https://GANTI-DENGAN-DOMAINMU.vercel.app/manifest.webmanifest",
+  "enableNotifications": false,
+  "appVersion": "1",
+  "appVersionCode": 1,
+  "minSdkVersion": 21,
+  "fallbackType": "customtabs"
+}

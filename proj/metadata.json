@@ -1,0 +1,6 @@
+{
+  "name": "Liquid Glass Music Player (iOS 26)",
+  "description": "Fluid liquid glass music player inspired by iOS 26 with refraction physics, YouTube Music backend, ambient dynamic mesh, and synchronized lyrics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

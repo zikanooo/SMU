@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Leaderboard sepanjang waktu
+    match /users/{uid} {
+      allow read: if true;
+      // Hanya pemilik; waktu hanya boleh NAIK, maks +6 jam per penulisan (anti-curang dasar)
+      allow create: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.totalSeconds is number
+        && request.resource.data.totalSeconds >= 0
+        && request.resource.data.totalSeconds <= 604800
+        && (!('photo' in request.resource.data) || request.resource.data.photo.size() < 40000)
+        && (!('bio' in request.resource.data) || (request.resource.data.bio is string && request.resource.data.bio.size() <= 160))
+        && (!('name' in request.resource.data) || (request.resource.data.name is string && request.resource.data.name.size() <= 40));
+      allow update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.totalSeconds is number
+        && request.resource.data.totalSeconds >= resource.data.totalSeconds
+        && request.resource.data.totalSeconds - resource.data.totalSeconds <= 21600
+        && (!('photo' in request.resource.data) || request.resource.data.photo.size() < 40000)
+        && (!('bio' in request.resource.data) || (request.resource.data.bio is string && request.resource.data.bio.size() <= 160))
+        && (!('name' in request.resource.data) || (request.resource.data.name is string && request.resource.data.name.size() <= 40));
+
+      // Mengikuti (hanya pemilik yang menulis)
+      match /following/{other} {
+        allow read: if true;
+        allow create, update: if request.auth != null && request.auth.uid == uid && other != uid
+          && request.resource.data.keys().hasOnly(['at']);
+        allow delete: if request.auth != null && request.auth.uid == uid;
+      }
+      // Pengikut (hanya si pengikut yang menambah; pemilik atau si pengikut boleh menghapus)
+      match /followers/{other} {
+        allow read: if true;
+        allow create, update: if request.auth != null && request.auth.uid == other && other != uid
+          && request.resource.data.keys().hasOnly(['at']);
+        allow delete: if request.auth != null && (request.auth.uid == other || request.auth.uid == uid);
+      }
+    }
+
+    // Leaderboard mingguan: weeks/{YYYY-MM-DD Senin}/users/{uid}
+    match /weeks/{week}/users/{uid} {
+      allow read: if true;
+      allow create: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.seconds is number
+        && request.resource.data.seconds >= 0
+        && request.resource.data.seconds <= 604800
+        && (!('photo' in request.resource.data) || request.resource.data.photo.size() < 40000);
+      allow update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.seconds is number
+        && request.resource.data.seconds >= resource.data.seconds
+        && request.resource.data.seconds - resource.data.seconds <= 21600
+        && (!('photo' in request.resource.data) || request.resource.data.photo.size() < 40000);
+    }
+  }
+}
